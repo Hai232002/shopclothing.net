@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CLOTHES" Class="CLOTHESEenities1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.asp_2120110218" Member="asp_2120110218s">
+    <Type Name="asp_2120110218">
+      <Column Name="MASV" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENSV" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SODT" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LOP" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="DIACHI" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="idUser" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPermission" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="fullName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="identityCard" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="URLAvatar" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="phone" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_Bill" Member="Bills" ThisKey="idUser" OtherKey="idUser" Type="Bill" />
+      <Association Name="Permission_User" Member="Permission" ThisKey="idPermission" OtherKey="idPermission" Type="Permission" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Voucher" Member="Vouchers">
+    <Type Name="Voucher">
+      <Column Name="idVoucher" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[percent]" Member="percent" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="dateStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="dateEnd" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DetailBIll" Member="DetailBIlls">
+    <Type Name="DetailBIll">
+      <Column Name="idDetailBill" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idProduct" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="idBill" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="qty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="intoMoney" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Product_DetailBIll" Member="Product" ThisKey="idProduct" OtherKey="idProduct" Type="Product" IsForeignKey="true" />
+      <Association Name="Product_DetailBIll1" Member="Product1" ThisKey="idProduct" OtherKey="idProduct" Type="Product" IsForeignKey="true" />
+      <Association Name="Bill_DetailBIll" Member="Bill" ThisKey="idBill" OtherKey="idBill" Type="Bill" IsForeignKey="true" />
+      <Association Name="Bill_DetailBIll1" Member="Bill1" ThisKey="idBill" OtherKey="idBill" Type="Bill" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Permission" Member="Permissions">
+    <Type Name="Permission">
+      <Column Name="idPermission" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="namePermission" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="[level]" Member="level" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Permission_User" Member="Users" ThisKey="idPermission" OtherKey="idPermission" Type="User" />
+      <Association Name="Permission_User1" Member="User1s" ThisKey="idPermission" OtherKey="idPermission" Type="User1" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="nameProduct" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="idProduct" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="sizeM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sizeL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sizeXL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="idType" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Product_DetailBIll" Member="DetailBIlls" ThisKey="idProduct" OtherKey="idProduct" Type="DetailBIll" />
+      <Association Name="Product_DetailBIll1" Member="DetailBIlls1" ThisKey="idProduct" OtherKey="idProduct" Type="DetailBIll" />
+      <Association Name="Type_Product" Member="Type" ThisKey="idType" OtherKey="idType" Type="Type" IsForeignKey="true" />
+      <Association Name="Type_Product1" Member="Type1" ThisKey="idType" OtherKey="idType" Type="Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Types" Member="Types">
+    <Type Name="Type">
+      <Column Name="idType" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nameType" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Type_Product" Member="Products" ThisKey="idType" OtherKey="idType" Type="Product" />
+      <Association Name="Type_Product1" Member="Products1" ThisKey="idType" OtherKey="idType" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="User1s">
+    <Type Name="User1">
+      <Column Name="idUser" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPermission" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="fullName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="identityCard" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NText NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="URLAvatar" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="phone" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User1_Bill" Member="Bills" ThisKey="idUser" OtherKey="idUser" Type="Bill" />
+      <Association Name="Permission_User1" Member="Permission" ThisKey="idPermission" OtherKey="idPermission" Type="Permission" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Voucher" Member="Voucher1s">
+    <Type Name="Voucher1">
+      <Column Name="idVoucher" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[percent]" Member="percent" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="dateStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="dateEnd" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bill" Member="Bills">
+    <Type Name="Bill">
+      <Column Name="idBill" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idUser" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Shipping" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PTTT" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="createdAt" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="totalQty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nameBook" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="phone" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Bill_DetailBIll" Member="DetailBIlls" ThisKey="idBill" OtherKey="idBill" Type="DetailBIll" />
+      <Association Name="Bill_DetailBIll1" Member="DetailBIlls1" ThisKey="idBill" OtherKey="idBill" Type="DetailBIll" />
+      <Association Name="User_Bill" Member="User" ThisKey="idUser" OtherKey="idUser" Type="User" IsForeignKey="true" />
+      <Association Name="User1_Bill" Member="User1" ThisKey="idUser" OtherKey="idUser" Type="User1" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
